@@ -13,4 +13,4 @@ Copy `.env` locally (never commit it). Required variables:
 
 ## Git
 
-After every significant change or completed task, automatically commit with a clean descriptive message and push to `origin/master`. This is a standing instruction — no need to ask for confirmation each time.
+After every significant change or completed task — new feature, bug fix, config change, or any meaningful unit of work — automatically stage the relevant files, commit with a clean descriptive message, and push to `origin/master`. This is a standing instruction; never wait to be asked. The goal is that the GitHub remote always reflects the latest working state so no progress is ever lost.
