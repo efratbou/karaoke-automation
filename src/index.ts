@@ -10,10 +10,6 @@ async function main() {
     process.exit(1);
   }
 
-  if (!process.env.GEMINI_API_KEY) {
-    console.error('Missing GEMINI_API_KEY in .env');
-    process.exit(1);
-  }
   if (!process.env.SPREADSHEET_ID) {
     console.error('Missing SPREADSHEET_ID in .env');
     process.exit(1);

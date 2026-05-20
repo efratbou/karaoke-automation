@@ -1,7 +1,12 @@
-import { GoogleGenAI } from '@google/genai';
+import { VertexAI } from '@google-cloud/vertexai';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ReservationData } from '../types';
+
+const VERTEX_PROJECT = 'karaoke-app-496909';
+const VERTEX_LOCATION = 'us-central1';
+const VERTEX_MODEL = 'gemini-1.5-flash-002';
+const CREDENTIALS_PATH = path.resolve(process.cwd(), 'credentials.json');
 
 const MIME_TYPES: Record<string, string> = {
   '.mp3': 'audio/mpeg',
@@ -100,44 +105,37 @@ export async function extractReservationFromAudio(
     throw new Error(`Audio file not found: ${audioFilePath}`);
   }
 
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+  const vertexAI = new VertexAI({
+    project: VERTEX_PROJECT,
+    location: VERTEX_LOCATION,
+    googleAuthOptions: { keyFilename: CREDENTIALS_PATH },
+  });
+
+  const model = vertexAI.getGenerativeModel({ model: VERTEX_MODEL });
 
   const ext = path.extname(audioFilePath).toLowerCase();
   const mimeType = MIME_TYPES[ext] ?? 'audio/mpeg';
 
-  console.log(`Uploading audio file: ${path.basename(audioFilePath)}...`);
-  const uploadedFile = await ai.files.upload({
-    file: audioFilePath,
-    config: { mimeType, displayName: path.basename(audioFilePath) },
-  });
-
-  // Wait for file to be processed by Gemini
-  let file = await ai.files.get({ name: uploadedFile.name! });
-  while (file.state === 'PROCESSING') {
-    process.stdout.write('.');
-    await new Promise((r) => setTimeout(r, 2000));
-    file = await ai.files.get({ name: uploadedFile.name! });
-  }
-  if (file.state === 'FAILED') {
-    throw new Error('Gemini file processing failed');
-  }
-  console.log('\nFile ready. Extracting reservation details...');
+  console.log(`Reading audio file: ${path.basename(audioFilePath)}...`);
+  const base64Audio = fs.readFileSync(audioFilePath).toString('base64');
 
   const now = new Date();
   const prompt = buildPrompt(formatDate(now), getHebrewDay(now));
 
-  const response = await ai.models.generateContent({
-    model: 'gemini-1.5-flash',
+  console.log('Sending to Vertex AI...');
+  const result = await model.generateContent({
     contents: [
       {
+        role: 'user',
         parts: [
-          { fileData: { mimeType, fileUri: uploadedFile.uri! } },
+          { inlineData: { mimeType, data: base64Audio } },
           { text: prompt },
         ],
       },
     ],
   });
 
-  const text = response.text ?? '';
+  const text =
+    result.response.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
   return parseReservationJson(text);
 }
