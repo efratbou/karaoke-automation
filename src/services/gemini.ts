@@ -3,10 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { ReservationData } from '../types';
 
-const VERTEX_PROJECT = 'karaoke-app-496909';
-const VERTEX_LOCATION = 'us-central1';
-const VERTEX_MODEL = 'gemini-1.5-flash-002';
-const CREDENTIALS_PATH = path.resolve(process.cwd(), 'credentials.json');
+const MODEL = 'gemini-1.5-flash';
 
 const MIME_TYPES: Record<string, string> = {
   '.mp3': 'audio/mpeg',
@@ -105,14 +102,7 @@ export async function extractReservationFromAudio(
     throw new Error(`Audio file not found: ${audioFilePath}`);
   }
 
-  // Point ADC to credentials.json so @google/genai picks it up without gcloud
-  process.env.GOOGLE_APPLICATION_CREDENTIALS = CREDENTIALS_PATH;
-
-  const ai = new GoogleGenAI({
-    vertexai: true,
-    project: VERTEX_PROJECT,
-    location: VERTEX_LOCATION,
-  });
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
   const ext = path.extname(audioFilePath).toLowerCase();
   const mimeType = MIME_TYPES[ext] ?? 'audio/mpeg';
@@ -125,7 +115,7 @@ export async function extractReservationFromAudio(
 
   console.log('Sending to Vertex AI (via @google/genai)...');
   const response = await ai.models.generateContent({
-    model: VERTEX_MODEL,
+    model: MODEL,
     contents: [
       {
         role: 'user',
