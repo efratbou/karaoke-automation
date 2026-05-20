@@ -1,4 +1,5 @@
 import { VertexAI } from '@google-cloud/vertexai';
+import { GoogleAuth } from 'google-auth-library';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ReservationData } from '../types';
@@ -105,10 +106,19 @@ export async function extractReservationFromAudio(
     throw new Error(`Audio file not found: ${audioFilePath}`);
   }
 
+  const auth = new GoogleAuth({
+    keyFile: CREDENTIALS_PATH,
+    scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+  });
+  await auth.getClient(); // load and validate the service account key file
+
   const vertexAI = new VertexAI({
     project: VERTEX_PROJECT,
     location: VERTEX_LOCATION,
-    googleAuthOptions: { keyFilename: CREDENTIALS_PATH },
+    googleAuthOptions: {
+      keyFile: CREDENTIALS_PATH,
+      scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+    },
   });
 
   const model = vertexAI.getGenerativeModel({ model: VERTEX_MODEL });
