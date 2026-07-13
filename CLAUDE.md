@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-TypeScript backend that automates karaoke reservations. It accepts a phone call audio file, sends it to Vertex AI (Gemini) to extract reservation details in Hebrew, and appends the result as a new row to a Google Spreadsheet.
+TypeScript backend that automates karaoke reservations. It accepts a phone call audio file, sends it to the Gemini API (AI Studio) to extract reservation details in Hebrew, and appends the result as a new row to a Google Spreadsheet.
 
 ## Commands
 
@@ -29,22 +29,23 @@ src/
   index.ts            — CLI entry point; loads .env, runs the pipeline
   types.ts            — ReservationData interface (Hebrew keys) + RESERVATION_KEY_ORDER
   services/
-    gemini.ts         — Reads audio as base64, sends to Vertex AI as inlineData, parses JSON response
+    gemini.ts         — Reads audio as base64, sends to Gemini API (AI Studio) as inlineData, parses JSON response
     sheets.ts         — Authenticates with credentials.json, appends a row to the spreadsheet
 ```
 
-**Pipeline:** `index.ts` → `gemini.ts` (base64 + Vertex AI extract) → `sheets.ts` (append row)
+**Pipeline:** `index.ts` → `gemini.ts` (base64 + Gemini API extract) → `sheets.ts` (append row)
 
 The column order in the spreadsheet is driven by `RESERVATION_KEY_ORDER` in `types.ts`. To add/remove/reorder columns, update that array — `sheets.ts` reads from it.
 
-Vertex AI is configured with project `karaoke-app-496909`, location `us-central1`, model `gemini-1.5-flash-002`. These constants are at the top of `src/services/gemini.ts`.
+Gemini is accessed via the AI Studio API using the `@google/genai` SDK, model `gemini-2.5-flash`. These constants are at the top of `src/services/gemini.ts`.
 
 ## Environment
 
 `.env` (never commit):
+- `GEMINI_API_KEY` — Gemini API key (AI Studio)
 - `SPREADSHEET_ID` — Target Google Spreadsheet ID
 
-`credentials.json` (never commit) — Google service account key file, must be in the project root. Used by both Vertex AI and the Sheets API. The spreadsheet must be shared with the service account email.
+`credentials.json` (never commit) — Google service account key file, must be in the project root. Used by the Sheets API only. The spreadsheet must be shared with the service account email.
 
 ## node_modules
 
