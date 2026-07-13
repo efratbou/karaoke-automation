@@ -6,6 +6,12 @@ const CREDENTIALS_PATH = path.resolve(process.cwd(), 'credentials.json');
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
 function getAuthClient() {
+  if (process.env.GOOGLE_CREDENTIALS_JSON) {
+    return new google.auth.GoogleAuth({
+      credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS_JSON),
+      scopes: SCOPES,
+    });
+  }
   return new google.auth.GoogleAuth({
     keyFile: CREDENTIALS_PATH,
     scopes: SCOPES,

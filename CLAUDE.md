@@ -9,14 +9,20 @@ TypeScript backend that automates karaoke reservations. It accepts a phone call 
 ## Commands
 
 ```bash
-# Run (development)
+# Run CLI (development)
 npx ts-node src/index.ts <path-to-audio-file>
+
+# Run web server (development)
+npm run server
 
 # Build to dist/
 npm run build
 
-# Run compiled output
+# Run compiled CLI
 npm start <path-to-audio-file>
+
+# Run compiled web server
+npm run start:server
 
 # Type-check only
 npx tsc --noEmit
@@ -27,13 +33,16 @@ npx tsc --noEmit
 ```
 src/
   index.ts            — CLI entry point; loads .env, runs the pipeline
+  server.ts           — Express server; POST /upload (multipart field "audio") runs the same pipeline
   types.ts            — ReservationData interface (Hebrew keys) + RESERVATION_KEY_ORDER
   services/
     gemini.ts         — Reads audio as base64, sends to Gemini API (AI Studio) as inlineData, parses JSON response
-    sheets.ts         — Authenticates with credentials.json, appends a row to the spreadsheet
+    sheets.ts         — Authenticates with credentials.json (or GOOGLE_CREDENTIALS_JSON), appends a row to the spreadsheet
 ```
 
-**Pipeline:** `index.ts` → `gemini.ts` (base64 + Gemini API extract) → `sheets.ts` (append row)
+**Pipeline:** `index.ts` or `server.ts` → `gemini.ts` (base64 + Gemini API extract) → `sheets.ts` (append row)
+
+`server.ts` is the deployable entry point (used on Render). It listens on `process.env.PORT` (falls back to `3000` locally) and uses Multer to save uploaded audio to the OS temp directory before handing the file path to the same `extractReservationFromAudio` / `appendReservationRow` functions the CLI uses.
 
 The column order in the spreadsheet is driven by `RESERVATION_KEY_ORDER` in `types.ts`. To add/remove/reorder columns, update that array — `sheets.ts` reads from it.
 
@@ -44,8 +53,11 @@ Gemini is accessed via the AI Studio API using the `@google/genai` SDK, model `g
 `.env` (never commit):
 - `GEMINI_API_KEY` — Gemini API key (AI Studio)
 - `SPREADSHEET_ID` — Target Google Spreadsheet ID
+- `PORT` — only used by `server.ts`; Render sets this automatically, defaults to `3000` locally
 
-`credentials.json` (never commit) — Google service account key file, must be in the project root. Used by the Sheets API only. The spreadsheet must be shared with the service account email.
+`credentials.json` (never commit) — Google service account key file, must be in the project root. Used by the Sheets API for local development. The spreadsheet must be shared with the service account email.
+
+In deployed environments (e.g. Render) where a local file isn't available, `sheets.ts` instead reads the full service account JSON from the `GOOGLE_CREDENTIALS_JSON` environment variable if it's set, taking priority over `credentials.json`.
 
 ## node_modules
 
