@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "server": "ts-node src/server.ts",
+    "start:server": "node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
   },
   "homepage": "https://github.com/efratbou/karaoke-automation#readme",
   "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.2.0",
     "@types/node": "^25.9.1",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
@@ -28,6 +32,8 @@
   "dependencies": {
     "@google/genai": "^2.4.0",
     "dotenv": "^17.4.2",
-    "googleapis": "^171.4.0"
+    "express": "^5.2.1",
+    "googleapis": "^171.4.0",
+    "multer": "^2.2.0"
   }
 }
