@@ -1,14 +1,18 @@
 # Karaoke Automation
 
-![Architecture diagram](docs/architecture.svg)
+![Live pipeline demo](docs/demo.svg)
 
 Automates logging phone-call karaoke reservations into a Google Sheet. Instead of manually transcribing a phone call and typing the details into a spreadsheet, this project listens to the recorded call with Google's Gemini API, extracts the structured reservation details in Hebrew, and appends them as a new row — with zero manual data entry.
 
 ## How it works
 
-1. A recorded phone call (Hebrew audio) is sent to the app — either as a local file via the CLI, or uploaded over HTTP.
+1. A recorded phone call (Hebrew audio) is sent to the app — either as a local file via the CLI, or uploaded over HTTP (in practice, from an iPhone Shortcut).
 2. The audio is sent to the **Gemini API**, which listens to the call and extracts the reservation details (customer name, phone, date, time, number of participants, pricing, deposit terms, etc.) as structured JSON, following the business's own pricing rules.
 3. The structured data is appended as a new row to a **Google Sheet** via the Google Sheets API.
+
+## Architecture
+
+![Architecture diagram](docs/architecture.svg)
 
 ## Features
 

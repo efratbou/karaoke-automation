@@ -1,0 +1,129 @@
+<svg width="900" height="400" viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .box { fill: #262c3b; stroke: #3a4154; stroke-width: 1.5; transition: stroke 0.2s; }
+      .label { fill: #f5f6fa; font-size: 14px; font-weight: 600; }
+      .sub { fill: #9aa5b1; font-size: 11px; }
+      .icon { font-size: 36px; }
+      .dot { fill: #4fd1c5; }
+      .thinkdot { fill: #4fd1c5; opacity: 0; }
+      .row { opacity: 0; }
+      .arrowline { stroke: #3a4154; stroke-width: 2; }
+
+      @keyframes glow1 {
+        0%, 2% { stroke: #4fd1c5; stroke-width: 3; }
+        22%, 100% { stroke: #3a4154; stroke-width: 1.5; }
+      }
+      @keyframes glow2 {
+        0%, 25% { stroke: #3a4154; stroke-width: 1.5; }
+        27%, 47% { stroke: #4fd1c5; stroke-width: 3; }
+        50%, 100% { stroke: #3a4154; stroke-width: 1.5; }
+      }
+      @keyframes glow3 {
+        0%, 50% { stroke: #3a4154; stroke-width: 1.5; }
+        52%, 72% { stroke: #4fd1c5; stroke-width: 3; }
+        75%, 100% { stroke: #3a4154; stroke-width: 1.5; }
+      }
+      @keyframes glow4 {
+        0%, 75% { stroke: #3a4154; stroke-width: 1.5; }
+        77%, 98% { stroke: #4fd1c5; stroke-width: 3; }
+        100% { stroke: #3a4154; stroke-width: 1.5; }
+      }
+
+      @keyframes travel1 {
+        0%, 20% { opacity: 0; transform: translateX(0px); }
+        21% { opacity: 1; transform: translateX(0px); }
+        26% { opacity: 1; transform: translateX(210px); }
+        27%, 100% { opacity: 0; transform: translateX(210px); }
+      }
+      @keyframes travel2 {
+        0%, 45% { opacity: 0; transform: translateX(0px); }
+        46% { opacity: 1; transform: translateX(0px); }
+        51% { opacity: 1; transform: translateX(210px); }
+        52%, 100% { opacity: 0; transform: translateX(210px); }
+      }
+      @keyframes travel3 {
+        0%, 70% { opacity: 0; transform: translateX(0px); }
+        71% { opacity: 1; transform: translateX(0px); }
+        76% { opacity: 1; transform: translateX(210px); }
+        77%, 100% { opacity: 0; transform: translateX(210px); }
+      }
+
+      @keyframes thinking {
+        0%, 51% { opacity: 0; }
+        54%, 70% { opacity: 1; }
+        73%, 100% { opacity: 0; }
+      }
+      @keyframes thinking2 { 0%, 53% { opacity: 0; } 56%, 70% { opacity: 1; } 73%, 100% { opacity: 0; } }
+      @keyframes thinking3 { 0%, 55% { opacity: 0; } 58%, 70% { opacity: 1; } 73%, 100% { opacity: 0; } }
+
+      @keyframes rowfade {
+        0%, 77% { opacity: 0; transform: translateY(6px); }
+        82%, 100% { opacity: 1; transform: translateY(0px); }
+      }
+
+      #b1 { animation: glow1 24s infinite; }
+      #b2 { animation: glow2 24s infinite; }
+      #b3 { animation: glow3 24s infinite; }
+      #b4 { animation: glow4 24s infinite; }
+      #dot1 { animation: travel1 24s infinite; }
+      #dot2 { animation: travel2 24s infinite; }
+      #dot3 { animation: travel3 24s infinite; }
+      #think1 { animation: thinking 24s infinite; }
+      #think2 { animation: thinking2 24s infinite; }
+      #think3 { animation: thinking3 24s infinite; }
+      #sheetrow { animation: rowfade 24s infinite; }
+    </style>
+  </defs>
+
+  <rect width="900" height="400" rx="14" fill="#1b1f2a"/>
+
+  <text x="450" y="38" text-anchor="middle" fill="#f5f6fa" font-size="20" font-weight="600">Live Pipeline Demo</text>
+  <text x="450" y="60" text-anchor="middle" fill="#9aa5b1" font-size="12">One phone recording, automatically turned into a spreadsheet row</text>
+
+  <!-- connecting lines -->
+  <line x1="217" y1="185" x2="261" y2="185" class="arrowline"/>
+  <line x1="427" y1="185" x2="471" y2="185" class="arrowline"/>
+  <line x1="637" y1="185" x2="681" y2="185" class="arrowline"/>
+
+  <!-- traveling dots -->
+  <circle id="dot1" class="dot" cx="217" cy="185" r="5"/>
+  <circle id="dot2" class="dot" cx="427" cy="185" r="5"/>
+  <circle id="dot3" class="dot" cx="637" cy="185" r="5"/>
+
+  <!-- Box 1: iPhone -->
+  <rect id="b1" class="box" x="55" y="110" width="160" height="150" rx="12"/>
+  <text x="135" y="158" text-anchor="middle" class="icon">📱</text>
+  <text x="135" y="188" text-anchor="middle" class="label">iPhone Shortcut</text>
+  <text x="135" y="208" text-anchor="middle" class="sub">Recorded call audio</text>
+  <text x="135" y="224" text-anchor="middle" class="sub">sent in one tap</text>
+
+  <!-- Box 2: Server -->
+  <rect id="b2" class="box" x="265" y="110" width="160" height="150" rx="12"/>
+  <text x="345" y="158" text-anchor="middle" class="icon">🌐</text>
+  <text x="345" y="188" text-anchor="middle" class="label">Express Server</text>
+  <text x="345" y="208" text-anchor="middle" class="sub">Receives upload</text>
+  <text x="345" y="224" text-anchor="middle" class="sub">hosted on Render</text>
+
+  <!-- Box 3: Gemini -->
+  <rect id="b3" class="box" x="475" y="110" width="160" height="150" rx="12"/>
+  <text x="555" y="158" text-anchor="middle" class="icon">🤖</text>
+  <text x="555" y="188" text-anchor="middle" class="label">Gemini API</text>
+  <text x="555" y="206" text-anchor="middle" class="sub">Listening &amp; extracting</text>
+  <circle id="think1" class="thinkdot" cx="538" cy="222" r="3"/>
+  <circle id="think2" class="thinkdot" cx="555" cy="222" r="3"/>
+  <circle id="think3" class="thinkdot" cx="572" cy="222" r="3"/>
+
+  <!-- Box 4: Sheet -->
+  <rect id="b4" class="box" x="685" y="110" width="160" height="150" rx="12"/>
+  <text x="765" y="150" text-anchor="middle" class="icon" font-size="28">📊</text>
+  <text x="765" y="178" text-anchor="middle" class="label">Google Sheet</text>
+  <g id="sheetrow">
+    <rect x="705" y="188" width="120" height="48" rx="4" fill="#1b1f2a" stroke="#3a4154"/>
+    <text x="765" y="203" text-anchor="middle" fill="#4fd1c5" font-size="10" font-weight="600">+ New row</text>
+    <text x="765" y="218" text-anchor="middle" fill="#d7dce2" font-size="10">רונית · 9 משתתפים</text>
+    <text x="765" y="231" text-anchor="middle" fill="#d7dce2" font-size="10">13/11/2026</text>
+  </g>
+
+  <text x="450" y="380" text-anchor="middle" fill="#6b7685" font-size="12">TypeScript · Express · Multer · Gemini API (@google/genai) · Google Sheets API</text>
+</svg>
