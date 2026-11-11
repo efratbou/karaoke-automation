@@ -21,7 +21,7 @@ function getAuthClient() {
 export async function appendReservationRow(
   reservation: ReservationData
 ): Promise<void> {
-  const spreadsheetId = process.env.SPREADSHEET_ID;
+  const spreadsheetId = process.env.SPREADSHEET_ID?.trim();
   if (!spreadsheetId) {
     throw new Error('SPREADSHEET_ID is not set in .env');
   }
