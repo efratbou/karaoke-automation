@@ -1,129 +1,134 @@
-<svg width="900" height="400" viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<svg width="900" height="580" viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
   <defs>
     <style>
-      .box { fill: #262c3b; stroke: #3a4154; stroke-width: 1.5; transition: stroke 0.2s; }
-      .label { fill: #f5f6fa; font-size: 14px; font-weight: 600; }
-      .sub { fill: #9aa5b1; font-size: 11px; }
-      .icon { font-size: 36px; }
-      .dot { fill: #4fd1c5; }
-      .thinkdot { fill: #4fd1c5; opacity: 0; }
-      .row { opacity: 0; }
-      .arrowline { stroke: #3a4154; stroke-width: 2; }
+      .bg { fill: #1b1f2a; }
+      .caption { fill: #cfd5dc; font-size: 15px; font-weight: 600; text-anchor: middle; }
+      .bezel { fill: #0d0e12; }
+      .screen { fill: #f2f2f7; }
+      .island { fill: #0d0e12; }
+      .statustxt { fill: #111318; font-size: 11px; font-weight: 600; }
+      .appcard { fill: #ffffff; stroke: #e2e4ea; stroke-width: 1; }
+      .hebrew { direction: rtl; }
+      .title { fill: #111318; font-size: 13px; font-weight: 700; text-anchor: middle; }
+      .sub { fill: #6b7280; font-size: 10px; text-anchor: middle; }
+      .rowtxt { fill: #111318; font-size: 10px; }
+      .dim { fill: #9aa0a8; font-size: 10px; }
+      .mono { font-family: 'Courier New', monospace; fill: #111318; font-size: 9.5px; }
 
-      @keyframes glow1 {
-        0%, 2% { stroke: #4fd1c5; stroke-width: 3; }
-        22%, 100% { stroke: #3a4154; stroke-width: 1.5; }
-      }
-      @keyframes glow2 {
-        0%, 25% { stroke: #3a4154; stroke-width: 1.5; }
-        27%, 47% { stroke: #4fd1c5; stroke-width: 3; }
-        50%, 100% { stroke: #3a4154; stroke-width: 1.5; }
-      }
-      @keyframes glow3 {
-        0%, 50% { stroke: #3a4154; stroke-width: 1.5; }
-        52%, 72% { stroke: #4fd1c5; stroke-width: 3; }
-        75%, 100% { stroke: #3a4154; stroke-width: 1.5; }
-      }
-      @keyframes glow4 {
-        0%, 75% { stroke: #3a4154; stroke-width: 1.5; }
-        77%, 98% { stroke: #4fd1c5; stroke-width: 3; }
-        100% { stroke: #3a4154; stroke-width: 1.5; }
-      }
+      @keyframes scene1 { 0% { opacity: 1; } 22% { opacity: 1; } 25% { opacity: 0; } 100% { opacity: 0; } }
+      @keyframes scene2 { 0%, 25% { opacity: 0; } 27% { opacity: 1; } 46% { opacity: 1; } 49% { opacity: 0; } 100% { opacity: 0; } }
+      @keyframes scene3 { 0%, 49% { opacity: 0; } 51% { opacity: 1; } 73% { opacity: 1; } 75% { opacity: 0; } 100% { opacity: 0; } }
+      @keyframes scene4 { 0%, 75% { opacity: 0; } 77% { opacity: 1; } 98% { opacity: 1; } 100% { opacity: 0; } }
 
-      @keyframes travel1 {
-        0%, 20% { opacity: 0; transform: translateX(0px); }
-        21% { opacity: 1; transform: translateX(0px); }
-        26% { opacity: 1; transform: translateX(210px); }
-        27%, 100% { opacity: 0; transform: translateX(210px); }
-      }
-      @keyframes travel2 {
-        0%, 45% { opacity: 0; transform: translateX(0px); }
-        46% { opacity: 1; transform: translateX(0px); }
-        51% { opacity: 1; transform: translateX(210px); }
-        52%, 100% { opacity: 0; transform: translateX(210px); }
-      }
-      @keyframes travel3 {
-        0%, 70% { opacity: 0; transform: translateX(0px); }
-        71% { opacity: 1; transform: translateX(0px); }
-        76% { opacity: 1; transform: translateX(210px); }
-        77%, 100% { opacity: 0; transform: translateX(210px); }
-      }
+      @keyframes tap { 0%, 36% { opacity: 0; transform: scale(0.4); } 40% { opacity: 0.9; transform: scale(1); } 46% { opacity: 0; transform: scale(1.4); } 100% { opacity: 0; transform: scale(0.4); } }
+      @keyframes selectrow { 0%, 70% { fill: #ffffff; } 75%, 100% { fill: #dbeeff; } }
+      @keyframes spinner { 0%, 19% { opacity: 1; } 21%, 100% { opacity: 0; } }
+      @keyframes resultcard { 0%, 21% { opacity: 0; transform: translateY(8px); } 25%, 100% { opacity: 1; transform: translateY(0); } }
+      @keyframes newrow { 0%, 25% { opacity: 0; transform: translateY(-6px); fill: #d9f5e3; } 32% { opacity: 1; transform: translateY(0); fill: #bdf0d1; } 55%, 100% { opacity: 1; transform: translateY(0); fill: #ffffff; } }
 
-      @keyframes thinking {
-        0%, 51% { opacity: 0; }
-        54%, 70% { opacity: 1; }
-        73%, 100% { opacity: 0; }
-      }
-      @keyframes thinking2 { 0%, 53% { opacity: 0; } 56%, 70% { opacity: 1; } 73%, 100% { opacity: 0; } }
-      @keyframes thinking3 { 0%, 55% { opacity: 0; } 58%, 70% { opacity: 1; } 73%, 100% { opacity: 0; } }
-
-      @keyframes rowfade {
-        0%, 77% { opacity: 0; transform: translateY(6px); }
-        82%, 100% { opacity: 1; transform: translateY(0px); }
-      }
-
-      #b1 { animation: glow1 24s infinite; }
-      #b2 { animation: glow2 24s infinite; }
-      #b3 { animation: glow3 24s infinite; }
-      #b4 { animation: glow4 24s infinite; }
-      #dot1 { animation: travel1 24s infinite; }
-      #dot2 { animation: travel2 24s infinite; }
-      #dot3 { animation: travel3 24s infinite; }
-      #think1 { animation: thinking 24s infinite; }
-      #think2 { animation: thinking2 24s infinite; }
-      #think3 { animation: thinking3 24s infinite; }
-      #sheetrow { animation: rowfade 24s infinite; }
+      #s1 { animation: scene1 26s infinite; transform-origin: center; }
+      #s2 { animation: scene2 26s infinite; transform-origin: center; }
+      #s3 { animation: scene3 26s infinite; transform-origin: center; }
+      #s4 { animation: scene4 26s infinite; transform-origin: center; }
+      #c1 { animation: scene1 26s infinite; }
+      #c2 { animation: scene2 26s infinite; }
+      #c3 { animation: scene3 26s infinite; }
+      #c4 { animation: scene4 26s infinite; }
+      #tapripple { animation: tap 26s infinite; transform-origin: 450px 300px; }
+      #fileRow { animation: selectrow 26s infinite; }
+      #spinnerDots circle { animation: spinner 26s infinite; }
+      #resultCard { animation: resultcard 26s infinite; }
+      #newRowBg { animation: newrow 26s infinite; transform-origin: 450px 455px; }
     </style>
   </defs>
 
-  <rect width="900" height="400" rx="14" fill="#1b1f2a"/>
+  <rect width="900" height="580" rx="16" class="bg"/>
+  <text x="450" y="36" text-anchor="middle" fill="#f5f6fa" font-size="20" font-weight="600">Live Pipeline Demo</text>
+  <text x="450" y="58" text-anchor="middle" fill="#9aa5b1" font-size="12">A recorded call, turned into a spreadsheet row with one tap</text>
 
-  <text x="450" y="38" text-anchor="middle" fill="#f5f6fa" font-size="20" font-weight="600">Live Pipeline Demo</text>
-  <text x="450" y="60" text-anchor="middle" fill="#9aa5b1" font-size="12">One phone recording, automatically turned into a spreadsheet row</text>
+  <!-- Phone frame -->
+  <rect x="320" y="80" width="260" height="440" rx="38" class="bezel"/>
+  <rect x="330" y="90" width="240" height="420" rx="28" class="screen"/>
+  <rect x="420" y="96" width="60" height="18" rx="9" class="island"/>
 
-  <!-- connecting lines -->
-  <line x1="217" y1="185" x2="261" y2="185" class="arrowline"/>
-  <line x1="427" y1="185" x2="471" y2="185" class="arrowline"/>
-  <line x1="637" y1="185" x2="681" y2="185" class="arrowline"/>
+  <!-- Status bar -->
+  <text x="345" y="118" class="statustxt">9:41</text>
+  <text x="552" y="118" class="statustxt" text-anchor="end">5G 🔋</text>
 
-  <!-- traveling dots -->
-  <circle id="dot1" class="dot" cx="217" cy="185" r="5"/>
-  <circle id="dot2" class="dot" cx="427" cy="185" r="5"/>
-  <circle id="dot3" class="dot" cx="637" cy="185" r="5"/>
-
-  <!-- Box 1: iPhone -->
-  <rect id="b1" class="box" x="55" y="110" width="160" height="150" rx="12"/>
-  <text x="135" y="158" text-anchor="middle" class="icon">📱</text>
-  <text x="135" y="188" text-anchor="middle" class="label">iPhone Shortcut</text>
-  <text x="135" y="208" text-anchor="middle" class="sub">Recorded call audio</text>
-  <text x="135" y="224" text-anchor="middle" class="sub">sent in one tap</text>
-
-  <!-- Box 2: Server -->
-  <rect id="b2" class="box" x="265" y="110" width="160" height="150" rx="12"/>
-  <text x="345" y="158" text-anchor="middle" class="icon">🌐</text>
-  <text x="345" y="188" text-anchor="middle" class="label">Express Server</text>
-  <text x="345" y="208" text-anchor="middle" class="sub">Receives upload</text>
-  <text x="345" y="224" text-anchor="middle" class="sub">hosted on Render</text>
-
-  <!-- Box 3: Gemini -->
-  <rect id="b3" class="box" x="475" y="110" width="160" height="150" rx="12"/>
-  <text x="555" y="158" text-anchor="middle" class="icon">🤖</text>
-  <text x="555" y="188" text-anchor="middle" class="label">Gemini API</text>
-  <text x="555" y="206" text-anchor="middle" class="sub">Listening &amp; extracting</text>
-  <circle id="think1" class="thinkdot" cx="538" cy="222" r="3"/>
-  <circle id="think2" class="thinkdot" cx="555" cy="222" r="3"/>
-  <circle id="think3" class="thinkdot" cx="572" cy="222" r="3"/>
-
-  <!-- Box 4: Sheet -->
-  <rect id="b4" class="box" x="685" y="110" width="160" height="150" rx="12"/>
-  <text x="765" y="150" text-anchor="middle" class="icon" font-size="28">📊</text>
-  <text x="765" y="178" text-anchor="middle" class="label">Google Sheet</text>
-  <g id="sheetrow">
-    <rect x="705" y="188" width="120" height="48" rx="4" fill="#1b1f2a" stroke="#3a4154"/>
-    <text x="765" y="203" text-anchor="middle" fill="#4fd1c5" font-size="10" font-weight="600">+ New row</text>
-    <text x="765" y="218" text-anchor="middle" fill="#d7dce2" font-size="10">רונית · 9 משתתפים</text>
-    <text x="765" y="231" text-anchor="middle" fill="#d7dce2" font-size="10">13/11/2026</text>
+  <!-- ===================== SCENE 1: Shortcuts home ===================== -->
+  <g id="s1">
+    <text x="450" y="146" class="title">הקיצורים שלי</text>
+    <rect x="345" y="165" width="210" height="90" rx="14" fill="#34c77b"/>
+    <text x="450" y="200" text-anchor="middle" font-size="26">📁</text>
+    <text x="450" y="232" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">תיעוד שיחת קריוקי</text>
+    <circle id="tapripple" cx="450" cy="210" r="28" fill="#ffffff" opacity="0"/>
+    <text x="450" y="290" text-anchor="middle" class="sub">הקשה אחת להפעלה</text>
   </g>
 
-  <text x="450" y="380" text-anchor="middle" fill="#6b7685" font-size="12">TypeScript · Express · Multer · Gemini API (@google/genai) · Google Sheets API</text>
+  <!-- ===================== SCENE 2: Select File ===================== -->
+  <g id="s2">
+    <text x="450" y="146" class="title">בחירת קבצים</text>
+    <rect x="345" y="170" width="210" height="40" rx="8" id="fileRow" class="appcard"/>
+    <text x="358" y="195" font-size="16">🎙️</text>
+    <text x="536" y="195" text-anchor="end" class="rowtxt">הקלטה.m4a</text>
+    <rect x="345" y="218" width="210" height="40" rx="8" class="appcard"/>
+    <text x="358" y="243" font-size="16">🎙️</text>
+    <text x="536" y="243" text-anchor="end" class="dim">הקלטה_ישנה.m4a</text>
+    <text x="450" y="290" text-anchor="middle" class="sub">נבחר קובץ — שולח לשרת…</text>
+  </g>
+
+  <!-- ===================== SCENE 3: Processing + Result ===================== -->
+  <g id="s3">
+    <text x="450" y="146" class="title">מעלה ומעבד…</text>
+    <g id="spinnerDots">
+      <circle cx="430" cy="200" r="6" fill="#4fd1c5"/>
+      <circle cx="450" cy="200" r="6" fill="#4fd1c5" style="animation-delay:0.15s"/>
+      <circle cx="470" cy="200" r="6" fill="#4fd1c5" style="animation-delay:0.3s"/>
+    </g>
+    <g id="resultCard">
+      <rect x="345" y="165" width="210" height="135" rx="10" class="appcard"/>
+      <text x="358" y="185" class="mono">{</text>
+      <text x="368" y="200" class="mono">"success": true,</text>
+      <text x="368" y="215" class="mono">"reservation": {</text>
+      <text x="378" y="230" class="mono">"שם לקוח": "רונית",</text>
+      <text x="378" y="245" class="mono">"מס' משתתפים": 9,</text>
+      <text x="378" y="260" class="mono">"תאריך האירוע":</text>
+      <text x="378" y="273" class="mono">"13/11/2026"</text>
+      <text x="368" y="288" class="mono">}</text>
+    </g>
+    <text x="450" y="330" text-anchor="middle" class="sub">Gemini חילץ את פרטי ההזמנה</text>
+  </g>
+
+  <!-- ===================== SCENE 4: Google Sheet ===================== -->
+  <g id="s4">
+    <text x="450" y="146" class="title">תיעוד קריוקי 📊</text>
+    <rect x="345" y="165" width="210" height="26" fill="#e8eaf0"/>
+    <text x="536" y="183" text-anchor="end" class="rowtxt" font-weight="700">תאריך</text>
+    <text x="465" y="183" text-anchor="end" class="rowtxt" font-weight="700">משתתפים</text>
+    <text x="395" y="183" text-anchor="end" class="rowtxt" font-weight="700">לקוח</text>
+
+    <rect x="345" y="191" width="210" height="26" fill="#ffffff"/>
+    <text x="536" y="209" text-anchor="end" class="dim">02/11/2026</text>
+    <text x="465" y="209" text-anchor="end" class="dim">7</text>
+    <text x="395" y="209" text-anchor="end" class="dim">דני</text>
+
+    <rect x="345" y="217" width="210" height="26" fill="#f7f8fa"/>
+    <text x="536" y="235" text-anchor="end" class="dim">05/11/2026</text>
+    <text x="465" y="235" text-anchor="end" class="dim">12</text>
+    <text x="395" y="235" text-anchor="end" class="dim">מאיה</text>
+
+    <rect id="newRowBg" x="345" y="443" width="210" height="26" fill="#ffffff"/>
+    <text x="536" y="461" text-anchor="end" class="rowtxt" font-weight="700">13/11/2026</text>
+    <text x="465" y="461" text-anchor="end" class="rowtxt" font-weight="700">9</text>
+    <text x="395" y="461" text-anchor="end" class="rowtxt" font-weight="700">רונית</text>
+    <text x="450" y="295" text-anchor="middle" fill="#2bb673" font-size="11" font-weight="700">+ שורה חדשה נוספה אוטומטית ↓</text>
+  </g>
+
+  <!-- Captions under phone -->
+  <text x="450" y="548" id="c1" class="caption">1. פתיחת הקיצור בטלפון</text>
+  <text x="450" y="548" id="c2" class="caption">2. בחירת הקלטת השיחה</text>
+  <text x="450" y="548" id="c3" class="caption">3. Gemini מחלץ את הפרטים</text>
+  <text x="450" y="548" id="c4" class="caption">4. השורה נוספת לגיליון בזמן אמת</text>
+
+  <text x="450" y="568" text-anchor="middle" fill="#6b7685" font-size="11">TypeScript · Express · Gemini API · Google Sheets API — running live on Render</text>
 </svg>
