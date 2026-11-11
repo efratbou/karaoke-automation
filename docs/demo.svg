@@ -15,30 +15,30 @@
       .dim { fill: #9aa0a8; font-size: 10px; }
       .mono { font-family: 'Courier New', monospace; fill: #111318; font-size: 9.5px; }
 
-      @keyframes scene1 { 0% { opacity: 1; } 22% { opacity: 1; } 25% { opacity: 0; } 100% { opacity: 0; } }
-      @keyframes scene2 { 0%, 25% { opacity: 0; } 27% { opacity: 1; } 46% { opacity: 1; } 49% { opacity: 0; } 100% { opacity: 0; } }
-      @keyframes scene3 { 0%, 49% { opacity: 0; } 51% { opacity: 1; } 73% { opacity: 1; } 75% { opacity: 0; } 100% { opacity: 0; } }
-      @keyframes scene4 { 0%, 75% { opacity: 0; } 77% { opacity: 1; } 98% { opacity: 1; } 100% { opacity: 0; } }
+      @keyframes scene1 { 0% { opacity: 1; } 23% { opacity: 1; } 24% { opacity: 0; } 100% { opacity: 0; } }
+      @keyframes scene2 { 0%, 24% { opacity: 0; } 25% { opacity: 1; } 47% { opacity: 1; } 48% { opacity: 0; } 100% { opacity: 0; } }
+      @keyframes scene3 { 0%, 48% { opacity: 0; } 49% { opacity: 1; } 73% { opacity: 1; } 74% { opacity: 0; } 100% { opacity: 0; } }
+      @keyframes scene4 { 0%, 74% { opacity: 0; } 75% { opacity: 1; } 99% { opacity: 1; } 100% { opacity: 0; } }
 
-      @keyframes tap { 0%, 36% { opacity: 0; transform: scale(0.4); } 40% { opacity: 0.9; transform: scale(1); } 46% { opacity: 0; transform: scale(1.4); } 100% { opacity: 0; transform: scale(0.4); } }
-      @keyframes selectrow { 0%, 70% { fill: #ffffff; } 75%, 100% { fill: #dbeeff; } }
-      @keyframes spinner { 0%, 19% { opacity: 1; } 21%, 100% { opacity: 0; } }
-      @keyframes resultcard { 0%, 21% { opacity: 0; transform: translateY(8px); } 25%, 100% { opacity: 1; transform: translateY(0); } }
-      @keyframes newrow { 0%, 25% { opacity: 0; transform: translateY(-6px); fill: #d9f5e3; } 32% { opacity: 1; transform: translateY(0); fill: #bdf0d1; } 55%, 100% { opacity: 1; transform: translateY(0); fill: #ffffff; } }
+      @keyframes tap { 0%, 8% { opacity: 0; transform: scale(0.4); } 11% { opacity: 0.9; transform: scale(1); } 16% { opacity: 0; transform: scale(1.4); } 100% { opacity: 0; transform: scale(0.4); } }
+      @keyframes selectrow { 0%, 38% { fill: #ffffff; } 42%, 100% { fill: #dbeeff; } }
+      @keyframes spinner { 0%, 48% { opacity: 0; } 50%, 57% { opacity: 1; } 60%, 100% { opacity: 0; } }
+      @keyframes resultcard { 0%, 59% { opacity: 0; transform: translateY(8px); } 63%, 100% { opacity: 1; transform: translateY(0); } }
+      @keyframes newrow { 0%, 74% { opacity: 0; transform: translateY(-6px); fill: #d9f5e3; } 78% { opacity: 1; transform: translateY(0); fill: #bdf0d1; } 88%, 100% { opacity: 1; transform: translateY(0); fill: #ffffff; } }
 
-      #s1 { animation: scene1 26s infinite; transform-origin: center; }
-      #s2 { animation: scene2 26s infinite; transform-origin: center; }
-      #s3 { animation: scene3 26s infinite; transform-origin: center; }
-      #s4 { animation: scene4 26s infinite; transform-origin: center; }
-      #c1 { animation: scene1 26s infinite; }
-      #c2 { animation: scene2 26s infinite; }
-      #c3 { animation: scene3 26s infinite; }
-      #c4 { animation: scene4 26s infinite; }
-      #tapripple { animation: tap 26s infinite; transform-origin: 450px 300px; }
-      #fileRow { animation: selectrow 26s infinite; }
-      #spinnerDots circle { animation: spinner 26s infinite; }
-      #resultCard { animation: resultcard 26s infinite; }
-      #newRowBg { animation: newrow 26s infinite; transform-origin: 450px 455px; }
+      #s1 { animation: scene1 22s infinite; transform-origin: center; }
+      #s2 { animation: scene2 22s infinite; transform-origin: center; }
+      #s3 { animation: scene3 22s infinite; transform-origin: center; }
+      #s4 { animation: scene4 22s infinite; transform-origin: center; }
+      #c1 { animation: scene1 22s infinite; }
+      #c2 { animation: scene2 22s infinite; }
+      #c3 { animation: scene3 22s infinite; }
+      #c4 { animation: scene4 22s infinite; }
+      #tapripple { animation: tap 22s infinite; transform-origin: 450px 300px; }
+      #fileRow { animation: selectrow 22s infinite; }
+      #spinnerDots circle { animation: spinner 22s infinite; }
+      #resultCard { animation: resultcard 22s infinite; }
+      #newRowBg { animation: newrow 22s infinite; transform-origin: 450px 455px; }
     </style>
   </defs>
 
